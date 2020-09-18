@@ -1,0 +1,95 @@
+<nb-layout style="position: absolute;left: -50vw">
+</nb-layout>
+<div class="contenedor">
+    <div class="header">
+        <div></div>
+        <div class="logo">
+            <img class="logo-img"
+                 src="/assets/facturaz_logo.png"
+                 alt="">
+        </div>
+        <div class="profile-info">
+            <p class="username">{{userName}}</p>
+            <img *ngIf="userImageURL"
+                 src="{{userImageURL}}"
+                 class="profile-img"
+                 alt="...">
+            <button class="button-logout btn btn-danger"
+                    nbButton
+                    type="button"
+                    (click)="logout()">Log Out</button>
+        </div>
+    </div>
+    <div class="body">
+        <div #msgBox
+             class="msg-box">
+            <div class="msg"
+                 *ngFor="let msg of messages"
+                 [class.bot]="msg.sender !== userName"
+                 [class.user]="msg.sender === userName">
+                <ng-container *ngIf="msg.sender !== userName; else userMsg">
+                    <img [src]="msg.avatar"
+                         alt="avatar"
+                         class="avatar-img">
+                    <div class="box-2">
+                        <div class="msg-box--msg msg__sender">{{msg.sender}}</div>
+                        <pre *ngIf="msg.text" class="msg-box--msg msg__text">{{msg.text}}</pre>
+                        <div *ngIf="msg.card"
+                             class="msg-box--msg msg__text">
+                            <img *ngIf="msg.card.imageUri" [src]="msg.card.imageUri"
+                                  alt="avatar-solicitado"
+                                  class="card-img" />
+                            <div>
+                                {{msg.card.title}}
+                            </div>
+                            <div>
+                                {{msg.card.subtitle}}
+                            </div>                           
+                        </div>
+                        <div>
+                            <small>{{msg.date | date: 'H:mm'}}</small>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-template #userMsg>
+                    <div class="box-2">
+                        <div class="msg-box--msg msg__sender">{{msg.sender}}</div>
+                        <div class="msg-box--msg msg__text">{{msg.text}}</div>
+                        <div>
+                            <small>{{msg.date | date: 'H:mm'}}</small>
+                        </div>
+                    </div>
+                    <img [src]="msg.avatar"
+                         alt="avatar"
+                         class="avatar-img">
+                </ng-template>
+            </div>
+        </div>
+        <form class="send-box">
+            <ng-container *ngIf="loading; else noLoading">
+                <div class="wait-text">
+                    Esperando la respuesta de estebot...
+                </div>
+            </ng-container>
+
+            <ng-template #noLoading>
+                <input class="send-box__input"
+                       #messageInput
+                       name="message"
+                       [(ngModel)]="message"
+                       type="text"
+                       placeholder="Ingrese un mensaje..."
+                       autocomplete="off"
+                       autofocus>
+                <button class="send-box__button"
+                        [disabled]="!message"
+                        (click)="handleUserMessage($event)">
+                    <span class="material-icons">
+                        send
+                    </span>
+                </button>
+            </ng-template>
+        </form>
+    </div>
+</div>

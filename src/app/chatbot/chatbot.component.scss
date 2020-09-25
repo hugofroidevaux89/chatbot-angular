@@ -54,7 +54,7 @@
   height: 30px;
   margin: auto;
   border-radius: 100%;
-  margin: auto auto auto -10px;
+  margin: auto;
 }
 
 .username {
@@ -109,7 +109,7 @@
 }
 .send-box__button {
   margin: 15px 6px;
-  color: #36f;
+  color: #9db1f5;
   border: none;
   background-color: #FFE7BD;
   font-size: 1.3em;
@@ -136,8 +136,8 @@
 .msg-box--msg.msg__sender {
   flex: 1;
   align-self: center;
-  padding: 5px;
-  font-size: 1.3em;
+  padding: 10px;
+  font-size: 1em;
   font-weight: bold;
 }
 .msg.bot {
@@ -172,8 +172,8 @@
   padding: 13px;
   margin: 5px;
   border-radius: 5px;
-  background-color: #36f;
-  color: white;
+  background-color: #e7ecfd;
+  color: black;
 }
 
 .wait-text {

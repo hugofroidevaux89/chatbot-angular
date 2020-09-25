@@ -15,7 +15,8 @@
                  class="profile-img"
                  alt="...">
             <button class="button-logout btn btn-danger"
-                    nbButton
+                    nbButton 
+                    status="danger"
                     type="button"
                     (click)="logout()">Log Out</button>
         </div>
@@ -56,7 +57,7 @@
 
                 <ng-template #userMsg>
                     <div class="box-2">
-                        <div class="msg-box--msg msg__sender">{{msg.sender}}</div>
+                        <div class="msg-box--msg msg__sender">Tú</div>
                         <div class="msg-box--msg msg__text">{{msg.text}}</div>
                         <div>
                             <small>{{msg.date | date: 'H:mm'}}</small>
